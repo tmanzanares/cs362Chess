@@ -101,7 +101,7 @@ public class Expectation {
 				}
 				
 			}
-			
+			fell = false; // reset for next goround
 			
 			double avg = 0;
 			for (int j = 0; j < moves.length; j++) {

@@ -14,7 +14,7 @@ public class Probability {
 	public static void main(String[] args) {
 		int n = 9;
 		int trials = 100;
-		int numOfTests = 1000;
+		long numOfTests = 100000000;
 		int successfulFalls = 0;
 		int fellOffTop = 0;
 		
@@ -46,48 +46,61 @@ public class Probability {
 
 					movement = rand.nextInt(8) + 1;
 					switch (movement) {
-					case 1:
-						x--;
-						break;
-					case 2:
-						x--;
-						y--;
-						break;
-					case 3:
-						x--;
-						y++;
-						break;
-					case 4:
-						y++;
-						break;
-					case 5:
-						y--;
-						break;
-					case 6:
-						x++;
-						break;
-					case 7:
-						x++;
-						y++;
-						break;
-					case 8:
-						x++;
-						y--;
-						break;
+						case 1:
+							x--;
+							break;
+						case 2:
+							x--;
+							y--;
+							break;
+						case 3:
+							x--;
+							y++;
+							break;
+						case 4:
+							y++;
+							break;
+						case 5:
+							y--;
+							break;
+						case 6:
+							x++;
+							break;
+						case 7:
+							x++;
+							y++;
+							break;
+						case 8:
+							x++;
+							y--;
+							break;
 					}
+					
+					
+					
 
 					if (x <= 0 || x >= n || y <= 0 || y >= n) {
 						//System.out.println("Fell off the board in " + steps + " steps!");
 						successfulFalls++;
-						if (y <= 0 || (x == 0 && y == 0) || (x == n && y == 0)) fellOffTop++;
+						if (x <= 0 || (x == 0 && y == 0) || (y == n && x == 0)) fellOffTop++;
 						fell = true;
 					}
 
 				}
+				successfulFalls = 0;
 				
-				System.out.println("X: " + i + ",  Y: " + j);
-				System.out.println("Fell off the top " + fellOffTop + " times.");
+				//System.out.println("X: " + i + ",  Y: " + j);
+				//System.out.println("Fell off the top " + fellOffTop + " times.");
+				/*if(j == 1 && i == 1){
+					System.out.print("p");
+					System.out.println(x + ", " + y);
+				}
+				else System.out.print("0");*/
+				double prob =  (fellOffTop / (double)numOfTests);
+				System.out.print(prob + "  ");
+				
 			} 
+			System.out.println("\n");
 		}
 	}
 }
